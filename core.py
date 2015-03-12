@@ -4,6 +4,7 @@ import updater
 from walker import walker
 from copywprogress import makedirs
 import jsonparser
+import configuration
 
 import configparser
 
@@ -18,9 +19,9 @@ def configreader():
     return config
 
 
-def configwriter():
+def configwriter(config):
 
-    config = configreader()
+    # config = configreader()
 
     with open('config.conf', 'w') as configfile:
         config.write(configfile)
@@ -44,8 +45,6 @@ def configdefaults():
 
 def core():
 
-    config = configreader()
-
     makedirs('tmp')
 
     makedirs('data')
@@ -54,15 +53,21 @@ def core():
 
     print(updater.md5sum('.gitignore'))
 
-    print(config['hash']['ninjaconfigs'])
+    # print(config['version']['ninjaconfigs'])
 
-    print(updater.md5sum('data/NinjaConfigs.json'))
+    # print(updater.md5sum('data/NinjaConfigs.json'))
 
     # updater.checker()
 
-    jsonparser.updatechecker('NinjaConfigs')
+    jsonparser.updatecheckerninjaconfigs()
 
-    print(config['hash']['ninjaconfigs'])
+    config = configreader()
+
+    print(config['version']['ninjaconfigs'])
+
+    newconfig = configuration.configreader()
+
+    print(newconfig['version']['ninjaconfigs'])
 
     # tar()
 
@@ -71,8 +76,8 @@ def core():
     # copyFilesWithProgress('/tmp/NinjaConfigs-master', '../minecraft')
     # shutil.rmtree('tmp', True)
 
-    configwriter()
+    # configwriter()
 
-    print(config['config']['compression'])
+    # print(config['config']['compression'])
 
     return

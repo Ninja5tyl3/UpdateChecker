@@ -1,0 +1,9 @@
+{
+  "compression":"zip",
+  "url":{
+    "ninjaconfigs": "https://raw.githubusercontent.com/Ninja5tyl3/Version/master/NinjaConfigs.json",
+    "updatechecker": "https://raw.githubusercontent.com/Ninja5tyl3/Version/master/UpdateChecker.json"},
+  "version":{
+    "ninjaconfigs":"0.0.0",
+    "updatechecker":"0.0.0"}
+}

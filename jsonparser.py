@@ -4,29 +4,38 @@ import json
 import hashlib
 import core
 from urllib.request import urlretrieve
+import configuration
 
 
 __author__ = 'jacob'
 
 
-def updatechecker(program):
+def updatecheckerninjaconfigs():
 
-    json_data = open('data/' + program + '.json')
+    json_data = open('data/NinjaConfigs.json')
 
     data = json.load(json_data)
     # pprint(data)
 
     newversion = data['tag_name']
 
-    config = core.configreader()
+    config = configuration.configreader()
 
-    oldversion = config['version'][program]
+    oldversion = config['version']['ninjaconfigs']
+
+    print(newversion)
+
+    print(oldversion)
 
     if newversion <= oldversion:
         print('No new updates')
     else:
         print('New Updates are Available!')
-        config['version'][program] = newversion
+        config['version']['ninjaconfigs'] = newversion
+
+    print(config['version']['ninjaconfigs'])
+
+    configuration.configwriter(config)
 
 
 def jsonupdater(program):
